@@ -68,6 +68,19 @@ function App() {
           </AnimatePresence>
         </main>
       </div>
+      
+      {/* Backend Status Banner */}
+      <div className="backend-status-banner">
+        <div className="status-content">
+          <span className="status-icon">⚠️</span>
+          <span className="status-text">
+            Backend API not deployed. This is a frontend-only demo. 
+            <a href="https://github.com/victormoncada/The-AI-Engineer-Challenge" target="_blank" rel="noopener noreferrer">
+              Deploy the backend
+            </a> to enable full functionality.
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

@@ -46,6 +46,9 @@ const ChatInterface = ({ apiKey, documents }) => {
       });
 
       if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error('Backend API not found. Please deploy the backend or check the API URL.');
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 

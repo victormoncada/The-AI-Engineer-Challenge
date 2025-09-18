@@ -75,10 +75,51 @@
   flex-direction: column;
 }
 
+/* Backend Status Banner */
+.backend-status-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #fef5e7 0%, #f6e05e 100%);
+  border-top: 2px solid #f6e05e;
+  padding: 12px 20px;
+  z-index: 1000;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.status-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #744210;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.status-text a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.status-text a:hover {
+  text-decoration: underline;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .app-container {
     padding: 0 16px;
+    margin-bottom: 60px; /* Add space for banner */
   }
   
   .tab-navigation {
@@ -93,6 +134,15 @@
   .tab-icon {
     font-size: 16px;
   }
+  
+  .backend-status-banner {
+    padding: 10px 16px;
+  }
+  
+  .status-content {
+    font-size: 13px;
+    gap: 8px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -104,5 +154,16 @@
   
   .tab-label {
     font-size: 12px;
+  }
+  
+  .backend-status-banner {
+    padding: 8px 12px;
+  }
+  
+  .status-content {
+    font-size: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 }
