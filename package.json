@@ -1,0 +1,13 @@
+{
+  "name": "ai-engineer-challenge",
+  "version": "1.0.0",
+  "description": "AI Engineer Challenge - Complete Solution",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static files already built'",
+    "start": "echo 'Static files ready'"
+  },
+  "keywords": ["ai", "react", "chat", "rag"],
+  "author": "Victor Moncada",
+  "license": "MIT"
+}
