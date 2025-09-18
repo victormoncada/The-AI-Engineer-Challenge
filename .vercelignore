@@ -1,0 +1,36 @@
+# Ignore Python files and directories
+*.py
+*.pyc
+__pycache__/
+.venv/
+venv/
+env/
+.env
+requirements.txt
+pyproject.toml
+uv.lock
+poetry.lock
+Pipfile
+Pipfile.lock
+
+# Ignore development files
+node_modules/
+.git/
+.DS_Store
+*.log
+
+# Ignore source files (we only want built files)
+frontend/src/
+frontend/public/
+frontend/package.json
+frontend/package-lock.json
+frontend/README.md
+frontend/.gitignore
+frontend/DEPLOYMENT.md
+frontend/deploy.sh
+
+# Keep only the built static files
+!index.html
+!manifest.json
+!static/
+!vercel.json
