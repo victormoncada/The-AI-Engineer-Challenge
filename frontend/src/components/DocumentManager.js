@@ -20,38 +20,38 @@ const DocumentManager = ({ documents, setDocuments, apiKey }) => {
 
     for (const file of acceptedFiles) {
       try {
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('api_key', apiKey);
-
         // Simulate upload progress
         const progressInterval = setInterval(() => {
           setUploadProgress(prev => Math.min(prev + 10, 90));
         }, 200);
 
-        const response = await fetch('/api/upload-document', {
-          method: 'POST',
-          body: formData,
+        // Read file content
+        const content = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target.result);
+          reader.onerror = reject;
+          reader.readAsText(file);
         });
 
         clearInterval(progressInterval);
         setUploadProgress(100);
 
-        if (response.ok) {
-          const result = await response.json();
-          const newDocument = {
-            id: Date.now() + Math.random(),
-            name: file.name,
-            size: file.size,
-            type: file.type,
-            content: result.content || 'Document content processed',
-            uploadedAt: new Date().toISOString(),
-            chunks: result.chunks || 0,
-          };
-          setDocuments(prev => [...prev, newDocument]);
-        } else {
-          throw new Error('Upload failed');
-        }
+        // Create document object with file content
+        const newDocument = {
+          id: Date.now() + Math.random(),
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          content: content,
+          uploadedAt: new Date().toISOString(),
+          chunks: Math.ceil(content.length / 1000), // Estimate chunks based on content length
+        };
+        
+        setDocuments(prev => [...prev, newDocument]);
+        
+        // Show success message
+        alert(`Successfully uploaded ${file.name}`);
+        
       } catch (error) {
         console.error('Error uploading file:', error);
         alert(`Error uploading ${file.name}: ${error.message}`);

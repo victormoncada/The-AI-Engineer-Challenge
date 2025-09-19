@@ -32,22 +32,34 @@ const ChatInterface = ({ apiKey, documents }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
+      // Prepare messages for OpenAI API
+      const chatMessages = [
+        { role: 'system', content: developerMessage },
+        ...newMessages
+      ];
+
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
+          'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          developer_message: developerMessage,
-          user_message: userMessage,
           model: model,
-          api_key: apiKey
+          messages: chatMessages,
+          stream: true,
+          temperature: 0.7,
+          max_tokens: 1000
         }),
       });
 
       if (!response.ok) {
-        if (response.status === 404) {
-          throw new Error('Backend API not found. Please deploy the backend or check the API URL.');
+        if (response.status === 401) {
+          throw new Error('Invalid API key. Please check your OpenAI API key in Settings.');
+        } else if (response.status === 429) {
+          throw new Error('Rate limit exceeded. Please try again later.');
+        } else if (response.status === 402) {
+          throw new Error('Insufficient credits. Please add credits to your OpenAI account.');
         }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -76,10 +88,27 @@ const ChatInterface = ({ apiKey, documents }) => {
         if (done) break;
 
         const chunk = decoder.decode(value);
-        assistantMessage += chunk;
-
-        // Update the last message with streaming content
-        updateMessage(assistantMessage);
+        const lines = chunk.split('\n');
+        
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data === '[DONE]') {
+              break;
+            }
+            
+            try {
+              const parsed = JSON.parse(data);
+              const content = parsed.choices?.[0]?.delta?.content;
+              if (content) {
+                assistantMessage += content;
+                updateMessage(assistantMessage);
+              }
+            } catch (e) {
+              // Ignore parsing errors for incomplete chunks
+            }
+          }
+        }
       }
 
       // Mark streaming as complete

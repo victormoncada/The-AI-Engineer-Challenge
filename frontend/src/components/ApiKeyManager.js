@@ -19,30 +19,21 @@ const ApiKeyManager = ({ apiKey, setApiKey }) => {
     setValidationStatus(null);
 
     try {
-      // Test the API key by making a simple request
-      const response = await fetch('/api/health');
-      if (response.ok) {
-        // If health check passes, try a simple chat request
-        const chatResponse = await fetch('/api/chat', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            developer_message: 'You are a helpful assistant.',
-            user_message: 'Hello',
-            model: 'gpt-4.1-mini',
-            api_key: key
-          }),
-        });
+      // Test the API key by making a direct request to OpenAI's API
+      const response = await fetch('https://api.openai.com/v1/models', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${key}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
-        if (chatResponse.ok) {
-          setValidationStatus('valid');
-        } else {
-          setValidationStatus('invalid');
-        }
-      } else {
+      if (response.ok) {
+        setValidationStatus('valid');
+      } else if (response.status === 401) {
         setValidationStatus('invalid');
+      } else {
+        setValidationStatus('error');
       }
     } catch (error) {
       console.error('API key validation error:', error);
