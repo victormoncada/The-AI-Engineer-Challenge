@@ -28,6 +28,7 @@
     }
   ],
   "env": {
-    "PYTHONPATH": "/var/task/02_Embeddings_and_RAG"
+    "PYTHONPATH": "/var/task/02_Embeddings_and_RAG",
+    "DEPLOYMENT_TIMESTAMP": "2024-12-19-18:00:00"
   }
 }
