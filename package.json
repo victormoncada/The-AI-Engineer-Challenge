@@ -1,13 +1,17 @@
 {
   "name": "ai-engineer-challenge",
   "version": "1.0.0",
-  "description": "AI Engineer Challenge - Complete Solution",
+  "description": "AI Engineer Challenge - Complete RAG Solution",
   "main": "index.html",
   "scripts": {
-    "build": "echo 'Static files already built'",
-    "start": "echo 'Static files ready'"
+    "build": "cd frontend && npm ci && npm run build",
+    "start": "echo 'Application deployed on Vercel'",
+    "dev": "concurrently \"cd backend && python start_server.py\" \"cd frontend && npm start\""
   },
-  "keywords": ["ai", "react", "chat", "rag"],
+  "keywords": ["ai", "react", "chat", "rag", "fastapi", "vercel"],
   "author": "Victor Moncada",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
