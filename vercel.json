@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "cd frontend && npm ci && npm run build",
+  "outputDirectory": "frontend/build",
   "builds": [
     {
       "src": "frontend/package.json",
@@ -29,6 +31,6 @@
   ],
   "env": {
     "PYTHONPATH": "/var/task/02_Embeddings_and_RAG",
-    "DEPLOYMENT_TIMESTAMP": "2024-12-19-18:00:00"
+    "DEPLOYMENT_TIMESTAMP": "2024-12-24-13:00:00"
   }
 }
