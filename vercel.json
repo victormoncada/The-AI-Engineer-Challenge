@@ -4,7 +4,7 @@
   "outputDirectory": "frontend/build",
   "functions": {
     "backend/app.py": {
-      "runtime": "@vercel/python"
+      "runtime": "@vercel/python@3.9"
     }
   },
   "routes": [
@@ -23,6 +23,6 @@
   ],
   "env": {
     "PYTHONPATH": "/var/task/02_Embeddings_and_RAG",
-    "DEPLOYMENT_TIMESTAMP": "2024-12-24-14:50:00"
+    "DEPLOYMENT_TIMESTAMP": "2024-12-24-14:55:00"
   }
 }
