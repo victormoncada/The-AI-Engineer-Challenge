@@ -1,4 +1,4 @@
 #!/bin/bash
 cd frontend
 npm ci
-npx react-scripts build
+./node_modules/.bin/react-scripts build
