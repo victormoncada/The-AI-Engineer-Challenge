@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm ci && npm run build",
+  "buildCommand": "./build-frontend.sh",
   "outputDirectory": "frontend/build",
   "routes": [
     {
@@ -13,6 +13,6 @@
     }
   ],
   "env": {
-    "DEPLOYMENT_TIMESTAMP": "2024-12-24-15:00:00"
+    "DEPLOYMENT_TIMESTAMP": "2024-12-24-16:30:00"
   }
 }
