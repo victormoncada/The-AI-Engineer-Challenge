@@ -2,16 +2,7 @@
   "version": 2,
   "buildCommand": "cd frontend && npm ci && npm run build",
   "outputDirectory": "frontend/build",
-  "functions": {
-    "backend/app.py": {
-      "runtime": "@vercel/python@3.9"
-    }
-  },
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/backend/app.py"
-    },
     {
       "src": "/static/(.*)",
       "dest": "/frontend/build/static/$1"
@@ -22,7 +13,6 @@
     }
   ],
   "env": {
-    "PYTHONPATH": "/var/task/02_Embeddings_and_RAG",
-    "DEPLOYMENT_TIMESTAMP": "2024-12-24-14:55:00"
+    "DEPLOYMENT_TIMESTAMP": "2024-12-24-15:00:00"
   }
 }
