@@ -1,13 +1,11 @@
 {
   "version": 2,
-  "buildCommand": "cd frontend && npm ci && npm run build",
-  "outputDirectory": "frontend/build",
   "builds": [
     {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/build"
+        "distDir": "build"
       }
     },
     {
@@ -31,6 +29,6 @@
   ],
   "env": {
     "PYTHONPATH": "/var/task/02_Embeddings_and_RAG",
-    "DEPLOYMENT_TIMESTAMP": "2024-12-24-13:00:00"
+    "DEPLOYMENT_TIMESTAMP": "2024-12-24-14:35:00"
   }
 }
