@@ -4,7 +4,7 @@
   "description": "AI Engineer Challenge - Complete RAG Solution",
   "main": "index.html",
   "scripts": {
-    "build": "cd frontend && npm ci && npx react-scripts build",
+    "build": "./build-frontend.sh",
     "start": "echo 'Application deployed on Vercel'",
     "dev": "concurrently \"cd backend && python start_server.py\" \"cd frontend && npm start\""
   },
