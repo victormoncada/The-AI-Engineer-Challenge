@@ -6,9 +6,16 @@
   "scripts": {
     "build": "./build-frontend.sh",
     "start": "echo 'Application deployed on Vercel'",
-    "dev": "concurrently \"cd backend && python start_server.py\" \"cd frontend && npm start\""
+    "dev": "concurrently \"cd backend && python3 start_server.py\" \"cd frontend && npm start\""
   },
-  "keywords": ["ai", "react", "chat", "rag", "fastapi", "vercel"],
+  "keywords": [
+    "ai",
+    "react",
+    "chat",
+    "rag",
+    "fastapi",
+    "vercel"
+  ],
   "author": "Victor Moncada",
   "license": "MIT",
   "devDependencies": {

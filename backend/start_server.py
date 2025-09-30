@@ -19,6 +19,9 @@ if __name__ == "__main__":
     print("📖 API docs will be available at: http://localhost:8000/docs")
     print("=" * 50)
     
+    # Change to backend directory so imports work correctly
+    os.chdir(Path(__file__).parent)
+    
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
